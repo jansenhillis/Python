@@ -18,7 +18,7 @@ food2 = "Sushi"
 print("I love to eat {} and {}".format(food1, food2))
 print(f"I love to eat {food1} and {food2}")
 
-#5 String explore
+#5. String explore
 str = "world"
 print(str.capitalize())
 print(str.isalpha())
