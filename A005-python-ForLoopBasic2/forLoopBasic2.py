@@ -79,17 +79,62 @@ def minimum(lst):
     
     return minVal
 
-print(minimum([37, 2, 1, -9]))
-print(minimum([]))
+# print(minimum([37, 2, 1, -9]))
+# print(minimum([]))
 
-# Maximum - Create a function that takes a list and returns the maximum value in the array. If the list is empty, have the function return False.
+# Maximum - Create a function that takes a list and returns the maximum value in the array. 
+# If the list is empty, have the function return False.
 # Example: maximum([37,2,1,-9]) should return 37
 # Example: maximum([]) should return False
+def maximum(lst):
+    if not lst:
+        return False
+    
+    maxVal = lst[0]
+    for item in lst:
+        if maxVal < item:
+            maxVal = item
 
+    return maxVal
 
-# Ultimate Analysis - Create a function that takes a list and returns a dictionary that has the sumTotal, average, minimum, maximum and length of the list.
-# Example: ultimate_analysis([37,2,1,-9]) should return {'sumTotal': 31, 'average': 7.75, 'minimum': -9, 'maximum': 37, 'length': 4 }
+# print(maximum([37,2,1,-9]))
+# print(maximum([]))
 
+# Ultimate Analysis - Create a function that takes a list and returns a dictionary that has 
+# the sumTotal, average, minimum, maximum and length of the list.
+# Example: ultimate_analysis([37,2,1,-9]) should return 
+# {'sumTotal': 31, 'average': 7.75, 'minimum': -9, 'maximum': 37, 'length': 4}
+def ultimate_analysis(lst):
+    if not lst:
+        return false
 
-# Reverse List - Create a function that takes a list and return that list with values reversed. Do this without creating a second list. (This challenge is known to appear during basic technical interviews.)
+    dict = { 
+        'sumTotal': sum_total(lst), 
+        'average': average(lst), 
+        'minimum': minimum(lst), 
+        'maximum': maximum(lst),
+        'length': length(lst)}
+
+    return dict
+
+# print(ultimate_analysis([37, 2, 1, -9]))
+
+# Reverse List - Create a function that takes a list and return that list with values reversed. 
+# Do this without creating a second list. 
+# (This challenge is known to appear during basic technical interviews.)
 # Example: reverse_list([37,2,1,-9]) should return [-9,1,2,37]
+def reverse_list(lst):
+    mid = round(len(lst) / 2)
+
+    for i in range(mid):
+        temp = lst[i]
+        lst[i] = lst[len(lst) - 1 - i]
+        lst[len(lst) - 1 - i] = temp
+    
+    return lst
+
+# print(reverse_list([37, 2, 1, -9]))
+# print(reverse_list([1, 2]))
+# print(reverse_list([1, 2, 3]))
+# print(reverse_list([1, 2, 3, 4]))
+# print(reverse_list([1, 2, 3, 4, 5]))
