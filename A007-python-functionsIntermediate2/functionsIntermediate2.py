@@ -129,8 +129,8 @@ def printInfo(my_dict):
 
             print() # blank line seperator between key traversals
 
-printInfo(dojo)                 
-printInfo("Hello World")        # String input test
-printInfo([])                   # empty list input test
-printInfo(None)                 # null input test
-printInfo(24)                   # int input test
+# printInfo(dojo)                 
+# printInfo("Hello World")        # String input test
+# printInfo([])                   # empty list input test
+# printInfo(None)                 # null input test
+# printInfo(24)                   # int input test
