@@ -52,6 +52,7 @@ def iterateDictionary(lst):
 # iterateDictionary(students)
 
 # 3. Get Values From a List of Dictionaries
+# ------------------------------------------
 # Create a function iterateDictionary2(key_name, some_list) that, given a list of 
 # dictionaries and a key name, the function prints the value stored in that key for 
 # each dictionary. For example, iterateDictionary2('first_name', students) should output:
@@ -78,8 +79,58 @@ def iterateDictionary2(key, lst):
             else:
                 print(student.get(key))
 
-iterateDictionary2('first_name', students)
-iterateDictionary2('last_name', students)
+# iterateDictionary2('first_name', students)
+# iterateDictionary2('last_name', students)
 # iterateDictionary2('name', students)
 # iterateDictionary2(24, students)
 # iterateDictionary2([], students)
+
+
+# 4. Iterate Through a Dictionary with List Values
+# ------------------------------------------
+# Create a function printInfo(some_dict) that given a dictionary whose values are all lists, prints the name of each key 
+# along with the size of its list, and then prints the associated values within each key's list. For example:
+# output:
+# 7 LOCATIONS
+# San Jose
+# Seattle
+# Dallas
+# Chicago
+# Tulsa
+# DC
+# Burbank
+    
+# 8 INSTRUCTORS
+# Michael
+# Amy
+# Eduardo
+# Josh
+# Graham
+# Patrick
+# Minh
+# Devon
+
+dojo = {
+    'locations': ['San Jose', 'Seattle', 'Dallas', 'Chicago', 'Tulsa', 'DC', 'Burbank'],
+    'instructors': ['Michael', 'Amy', 'Eduardo', 'Josh', 'Graham', 'Patrick', 'Minh', 'Devon']
+}
+
+def printInfo(my_dict):
+    if not isinstance(my_dict, dict):
+        print("Input should be a dictionary")
+    else: 
+        for key in my_dict:
+            listSize = len(my_dict.get(key))
+            print(f"{listSize} " + key.upper())
+
+            lst = my_dict.get(key)
+            for item in lst:
+                print(item)
+
+            print() # blank line seperator between key traversals
+
+printInfo(dojo)                 
+printInfo("Hello World")        # String input test
+printInfo([])                   # empty list input test
+printInfo(None)                 # null input test
+printInfo(24)                   # int input test
