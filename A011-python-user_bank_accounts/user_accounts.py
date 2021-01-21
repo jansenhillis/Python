@@ -32,34 +32,53 @@ class BankAccount:
         return self
 
 class User:
-    accounts = []
-
     def __init__(self, name, email):
         self.name = name
         self.email = email
+        self.accounts = []
 
     def create_account(self, new_account):
         self.accounts.append(new_account)
 
     def display_user_balance(self):
         print(f"Accounts for user: {self.name}")
+        print("-" * 30)
+
         for account in self.accounts:
             account.display_account_info()
-
+            
+        print("-" * 30 + "\n")
         return self
 
-    def make_deposit(self, amount):
-        self.account.balance += amount
-        return self
+    # Helper function for account lookup
+    def find_account(self, account_name):
+        for account in self.accounts:
+            if account_name == account.name:
+                return account
+        return None
+                
+    def make_deposit(self, account_name, amount):
+        account = self.find_account(account_name)
 
-    def make_withdrawal(self, amount):
-        new_balance = self.account.balance - amount
-
-        if not new_balance < 0:
-            self.account.balance -= amount
+        if account:
+            account.balance += amount
+            print("Deposited", amount, "into", account.name)
         else:
-            print("Not enough funds available to withdrawl. Balance Remaining: $", self.account_balance)
-        
+            print("Cannot deposit. Account not found:", account_name)
+
+        return self
+
+    def make_withdraw(self, account_name, amount):
+        account = self.find_account(account_name)
+
+        if account: 
+            new_balance = account.balance - amount
+            if not new_balance < 0:
+                account.balance -= amount
+            else:
+                print("Not enough funds available to withdrawl. Balance Remaining: $", account.balance)
+        else:
+            print("Cannot withdraw. Account not found:", account_name)
         return self
 
     def transfer_money(self, other_user, amount):
@@ -67,8 +86,19 @@ class User:
         other_user.account.balance += amount
         return self
 
+
 user1 = User("User 1", "user@1.com")
 user1.create_account(BankAccount(name = "checking", int_rate=0.1, balance=9000))
 user1.create_account(BankAccount(name = "savings", int_rate=0.05, balance=10))
 user1.create_account(BankAccount(name = "retirement", balance=100000))
 user1.display_user_balance()
+user1.make_deposit("checking", 1000)
+user1.display_user_balance()
+user1.make_withdraw("savings", 10)
+user1.display_user_balance()
+user1.make_withdraw("savings", 10)
+user1.display_user_balance()
+
+# user2 = User("User 2", "user@2.com")
+# user2.create_account(BankAccount(name = "bozo", int_rate = 0.3, balance = 0))
+# user2.display_user_balance()
