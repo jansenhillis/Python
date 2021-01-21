@@ -1,5 +1,5 @@
 class BankAccount:
-    def __init__(self, name, int_rate = 0, balance = 0):
+    def __init__(self, name, int_rate=0, balance=0):
         self.name = name
         self.int_rate = int_rate
         self.balance = balance
@@ -99,7 +99,6 @@ class User:
             print(f"Cannot transfer. Account: '{from_account_name}'' not found.") if to_account else print(f"Cannot transfer. Account: '{to_account_name}'' not found.")
         
         return self
-
 
 user1 = User("User 1", "user@1.com")
 user1.create_account(name = "checking", int_rate=0.1, balance=9000)
