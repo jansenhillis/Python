@@ -7,7 +7,7 @@ class BankAccount:
     def deposit(self, amount):
         if amount < 0:
             print("Cannot deposit that amount: $", amount)
-            return self
+            return None
         
         self.balance += amount
         print("Deposited", amount, "into", self.name)
