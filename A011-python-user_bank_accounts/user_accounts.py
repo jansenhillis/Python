@@ -23,7 +23,6 @@ class BankAccount:
         
         self.balance -= amount
         print("Withdraw:", amount, "from", self.name)
-
         return self
 
     def display_account_info(self):
@@ -96,6 +95,7 @@ class User:
                 return None
         else:
             print(f"Cannot transfer. Account: '{from_account_name}'' not found.") if to_account else print(f"Cannot transfer. Account: '{to_account_name}'' not found.")
+        
         return self
 
 
