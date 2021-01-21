@@ -35,27 +35,29 @@ class User:
     def __init__(self, name, email):
         self.name = name
         self.email = email
-        self.account = BankAccount()
+        self.account = BankAccount(int_rate = 0.05, balance = 0)
 
     def display_user_balance(self):
-        print(f"User: {self.name}, Balance: ${self.account_balance}")
+        print(f"User: {self.name}, Balance: ${self.account.balance}")
         return self
 
     def make_deposit(self, amount):
-        self.account_balance += amount
+        self.account.balance += amount
         return self
 
     def make_withdrawal(self, amount):
-        new_balance = self.account_balance - amount
+        new_balance = self.account.balance - amount
 
         if not new_balance < 0:
-            self.account_balance -= amount
+            self.account.balance -= amount
         else:
             print("Not enough funds available to withdrawl. Balance Remaining: $", self.account_balance)
         
         return self
 
     def transfer_money(self, other_user, amount):
-        self.account_balance -= amount
-        other_user.account_balance += amount
+        self.account.balance -= amount
+        other_user.account.balance += amount
         return self
+
+
