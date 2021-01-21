@@ -32,10 +32,15 @@ class BankAccount:
         return self
 
 class User:
-    def __init__(self, name, email):
+    accounts = []
+
+    def __init__(self, name, email, accounts):
         self.name = name
         self.email = email
-        self.account = BankAccount(int_rate = 0.05, balance = 0)
+
+    def create_account(new_account):
+        accounts.append(new_account)
+        print(accounts)
 
     def display_user_balance(self):
         print(f"User: {self.name}, Balance: ${self.account.balance}")
@@ -60,4 +65,5 @@ class User:
         other_user.account.balance += amount
         return self
 
-
+user1 = User("User 1", "user@1.com", BankAccount(0.05, 1000))
+user1.display_user_balance()
