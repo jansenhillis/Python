@@ -10,17 +10,20 @@ class BankAccount:
             return self
         
         self.balance += amount
+        print("Deposited", amount, "into", self.name)
         return self
 
     def withdraw(self, amount):
         new_balance = self.balance - amount
 
-        if new_balance <= 0:
+        if new_balance < 0:
             print("Insufficient funds: Charging a $5 fee")
             self.balance -= 5
-            return self
+            return None
         
         self.balance -= amount
+        print("Withdraw:", amount, "from", self.name)
+
         return self
 
     def display_account_info(self):
@@ -61,10 +64,10 @@ class User:
         account = self.find_account(account_name)
 
         if account:
-            account.balance += amount
-            print("Deposited", amount, "into", account.name)
+            account.deposit(amount)
         else:
             print("Cannot deposit. Account not found:", account_name)
+            return None
 
         return self
 
@@ -72,18 +75,27 @@ class User:
         account = self.find_account(account_name)
 
         if account: 
-            new_balance = account.balance - amount
-            if not new_balance < 0:
-                account.balance -= amount
-            else:
-                print("Not enough funds available to withdrawl. Balance Remaining: $", account.balance)
+            account.withdraw(amount)
         else:
             print("Cannot withdraw. Account not found:", account_name)
+            return None
+            
         return self
 
-    def transfer_money(self, other_user, amount):
-        self.account.balance -= amount
-        other_user.account.balance += amount
+    def transfer_money(self, from_account_name, other_user, to_account_name, amount):
+        from_account = self.find_account(from_account_name)
+        to_account = other_user.find_account(to_account_name)
+
+        # if these two accounts exist
+        if from_account and to_account:
+            #if there's enough balance from the sending account
+            if from_account.withdraw(amount):
+                to_account.deposit(amount)
+            else:
+                print("Cannot transfer. Not enough funds available.")
+                return None
+        else:
+            print(f"Cannot transfer. Account: '{from_account_name}'' not found.") if to_account else print(f"Cannot transfer. Account: '{to_account_name}'' not found.")
         return self
 
 
@@ -91,14 +103,18 @@ user1 = User("User 1", "user@1.com")
 user1.create_account(BankAccount(name = "checking", int_rate=0.1, balance=9000))
 user1.create_account(BankAccount(name = "savings", int_rate=0.05, balance=10))
 user1.create_account(BankAccount(name = "retirement", balance=100000))
-user1.display_user_balance()
+# user1.display_user_balance()
 user1.make_deposit("checking", 1000)
 user1.display_user_balance()
-user1.make_withdraw("savings", 10)
-user1.display_user_balance()
+# user1.make_withdraw("savings", 10)
+# user1.display_user_balance()
 user1.make_withdraw("savings", 10)
 user1.display_user_balance()
 
 # user2 = User("User 2", "user@2.com")
 # user2.create_account(BankAccount(name = "bozo", int_rate = 0.3, balance = 0))
+# user2.display_user_balance()
+
+# user1.transfer_money(from_account_name = "checking", other_user = user2, to_account_name = "bozo", amount = 5000)
+# user1.display_user_balance()
 # user2.display_user_balance()
