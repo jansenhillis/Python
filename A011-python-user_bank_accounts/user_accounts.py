@@ -39,8 +39,10 @@ class User:
         self.email = email
         self.accounts = []
 
-    def create_account(self, new_account):
-        self.accounts.append(new_account)
+    # helper method to allow the User to create a new BankAccount (based on the assignment reqs)
+    def create_account(self, name, int_rate=0.0, balance=0):
+        self.accounts.append(BankAccount(name=name, int_rate=int_rate, balance=balance))
+        return self
 
     def display_user_balance(self):
         print(f"Accounts for user: {self.name}")
@@ -100,9 +102,10 @@ class User:
 
 
 user1 = User("User 1", "user@1.com")
-user1.create_account(BankAccount(name = "checking", int_rate=0.1, balance=9000))
-user1.create_account(BankAccount(name = "savings", int_rate=0.05, balance=10))
-user1.create_account(BankAccount(name = "retirement", balance=100000))
+user1.create_account(name = "checking", int_rate=0.1, balance=9000)
+user1.create_account(name = "savings", int_rate=0.05, balance=10)
+user1.create_account(name = "retirement", balance=100000)
+
 user1.display_user_balance()
 user1.make_deposit("checking", 1000)
 user1.display_user_balance()
@@ -112,7 +115,7 @@ user1.make_withdraw("savings", 10)
 user1.display_user_balance()
 
 user2 = User("User 2", "user@2.com")
-user2.create_account(BankAccount(name = "bozo", int_rate = 0.3, balance = 0))
+user2.create_account(name = "bozo", int_rate = 0.3, balance = 0)
 user2.display_user_balance()
 
 user1.transfer_money(from_account_name = "checking", other_user = user2, to_account_name = "bozo", amount = 5000)
