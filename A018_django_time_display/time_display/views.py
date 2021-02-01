@@ -2,7 +2,7 @@ from django.shortcuts import render
 from time import gmtime, strftime
 from datetime import datetime, timezone
     
-def time_display(request):
+def index(request):
     context = {
         "time": strftime("%Y-%m-%d %H:%M %p", gmtime()),
         "time2" : datetime.now(timezone.utc),
