@@ -12,6 +12,7 @@
         <h1>Hello World! Dojo Survey</h1>
 
         <form action="/result" method="POST">
+            {% csrf_token %}
             <div class="container">
                 <label for="name">Your Name: </label>
                 <input type="text" id="name">
@@ -22,23 +23,23 @@
                 <select name="locations" id="location">
                     <option value="seattle">Seattle</option>
                     <option value="sanjose">San Jose</option>
-                    <option value="newyork">New York</option>
+                    <option value="ny">New York</option>
                 </select>
             </div>
             
             <div class="container">
                 <label for="language">Favorite Language: </label>
                 <select name="lang" id="language">
-                    <option value="1">Python</option>
-                    <option value="2">C++</option>
-                    <option value="3">Java</option>
+                    <option value="python">Python</option>
+                    <option value="cpp">C++</option>
+                    <option value="java">Java</option>
                 </select>
             </div>
             
             <label for="desc">Description: </label>
             <textarea name="description" id="desc" cols="30" rows="6"></textarea>
         
-            <button id="submit">Submit</button>
+            <button type="submit" id="submitForm">Submit</button>
         </form>
     </div>  
 
