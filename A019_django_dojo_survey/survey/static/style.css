@@ -1,0 +1,57 @@
+* {
+    /* outline: 1px black dotted; */
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+.wrapper {
+    width: 970px;
+    background-color: rgb(245,245,245);
+    margin: 0 auto;
+    font-family: "Arial";
+}
+
+.wrapper > h1 {
+    text-align: center;
+}
+
+form {
+    width: 300px;
+    padding: 10px 30px;
+    margin: 0 auto;
+    
+}
+
+.container {
+    text-align: left;
+    display: flex;
+    padding: 10px 0px;
+    justify-content: left;
+}
+
+input {
+    border: 1px black solid;
+    margin-left: 10%;
+}
+
+label {
+    text-align: left;
+}
+
+textarea {
+    width: 100%;
+    border: 1px black solid;
+}
+
+select {
+    border: 1px black solid;
+    margin-left: 10%;
+}
+
+#submit {
+    width: 60px;
+    text-align: center;
+    margin-left: 75%;
+    border: 1px black solid;
+}
