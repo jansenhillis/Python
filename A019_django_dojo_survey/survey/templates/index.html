@@ -15,7 +15,7 @@
             {% csrf_token %}
             <div class="container">
                 <label for="name">Your Name: </label>
-                <input type="text" id="name">
+                <input type="text" name="name" id="name">
             </div>
 
             <div class="container">
@@ -39,7 +39,7 @@
             <label for="desc">Description: </label>
             <textarea name="description" id="desc" cols="30" rows="6"></textarea>
         
-            <button type="submit" id="submitForm">Submit</button>
+            <button type="submit" id="submitForm" name="submitButton">Submit</button>
         </form>
     </div>  
 
