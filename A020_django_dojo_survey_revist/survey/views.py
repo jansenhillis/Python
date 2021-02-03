@@ -7,12 +7,12 @@ def result(request):
     if request.GET:
         return redirect('/')
     elif request.POST:
-        context = {
-            "name": request.POST["name"],
-            "locations": request.POST["locations"],
-            "lang": request.POST["lang"],
-            "description" : request.POST["description"],
-        }
-
-        return render(request, 'result.html', context)
+        request.session["name"] = request.POST["name"]
+        request.session["locations"] = request.POST["locations"]
+        request.session["lang"] = request.POST["lang"]
+        request.session["description"] = request.POST["description"]
+        
+        return render(request, 'result.html')
+    else:
+        return redirect('/')
 
