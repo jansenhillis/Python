@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <div class='wrapper'>
+        <div class='main_content'></div>
+        
+        <div class='container'>
+            <label for='#''>Your Gold:</label>
+            <input type='text' name='gold' id='#'>
+        </div>
+
+        <div class='container'>
+            <form action='/process_money' method='POST'>
+                {% csrf_token %}
+                <h1>Farm</h1>
+                <p>(Earns 10-20 gold)</p>
+                <button type='submit'>Find Gold!</button>
+                <input type='hidden' name='farm'>
+            </form>
+
+            <form action='/process_money' method='POST'>
+                {% csrf_token %}
+                <h1>Cave</h1>
+                <p>(Earns 5-10 gold)</p>
+                <button type='submit'>Find Gold!</button>
+                <input type='hidden' name='cave'>
+            </form>
+
+            <form action='/process_money' method='POST'>
+                {% csrf_token %}
+                <h1>House</h1>
+                <p>(Earns 2-5 gold)</p>
+                <button type='submit'>Find Gold!</button>
+                <input type='hidden' name='house'>
+            </form>
+
+            <form action='/process_money' method='POST'>
+                {% csrf_token %}
+                <h1>Casino</h1>
+                <p>(Earns 10-20 gold)</p>
+                <button type='submit'>Find Gold!</button>
+                <input type='hidden' name='casino'>
+            </form>
+        </div>
+
+        <p>Activities:</p>
+        <textarea readonly id="w3review" name="w3review" rows="4" cols="50">
+            Temp Text
+        </textarea>
+    </div>
+</body>
+</html>
