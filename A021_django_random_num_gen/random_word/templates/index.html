@@ -8,7 +8,7 @@
 <body>
     <div class='wrapper'>
         <div id='content'>
-            <p>Random Word (attempt #13)</p>
+            <p>Random Word (attempt {{ request.session.count }})</p>
             <h2>1234567890ABCD</h2>
             <form action='/count' method='GET'>
                 <button type='submit'>Generate</button>
