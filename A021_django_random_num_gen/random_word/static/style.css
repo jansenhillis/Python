@@ -1,0 +1,26 @@
+.wrapper {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 50px 0px;
+    text-align: center;
+}
+
+.container > h2 {
+    margin: 10px 0px;
+    border: 2px black solid;
+}
+
+.container > h4 {
+    margin: 0;
+}
+
+.container > form > button {
+    border: 1px gray solid;
+    padding: 3px 10px;
+}
+
