@@ -47,10 +47,11 @@
                 <input type='hidden' name='casino'>
             </form>
         </div>
-
+        
         <h3>Activities:</h3>
         <textarea readonly>{% for time, log_entry in request.session.activities.items %}
-{{ time }} - {{ log_entry}}{% endfor %}</textarea>
+{{ time }} - {{ log_entry}}{% endfor %}
+        </textarea>
     </div>
 </body>
 </html>
