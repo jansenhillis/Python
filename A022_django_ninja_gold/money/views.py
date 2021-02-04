@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+import random
 
 forms = {
     'farm': { 'min': 10, 'max': 20 },
@@ -33,6 +34,20 @@ def process_money(request):
     else:
         return redirect('/')
 
+# impl of randInt(<min>, <max>) using random (from A007-python-functionsIntermediate2)
+# Modulus sets the upper bound, late addition of min sets the lower bound
+# (max + 1) to make sure the maximum value is included in the result inclusively
+def get_random_number_between(min=0, max=100):
+    
+    # basic type checking
+    if not isinstance(min, int):
+        return "minimum is not an integer"
+    elif not isinstance(max, int):
+        return "maximum is not an integer"
 
-def get_random_number_between(min=0, max=10):
-    return 5
+    # basic range check
+    if (min > max):
+        return "minimum cannot be larger than maximum"
+
+    num = (round(random.random() * 100) % ((max + 1) - min)) + min
+    return num
