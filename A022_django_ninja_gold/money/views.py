@@ -19,8 +19,6 @@ def process_money(request):
     if request.method == 'POST':
         
         # min/max values for each form
-        values = {}
-        form = ''
         if 'farm' in request.POST:
             values = forms['farm']
             form = 'farm'

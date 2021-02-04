@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ninja Gold</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
     <div class='wrapper'>
-        <div class='main_content'></div>
-        
-        <div class='container'>
-            <h3>Gold Owned: ${{ request.session.owned_gold }}</h3>
-            <input type='text' name='gold' id='#'>
+        <div class='totals'>
+            <h3>Gold Owned: $</h3>
+            <input type='text' name='gold' id='#' value={{ request.session.owned_gold }}>
         </div>
 
         <div class='container'>
@@ -48,9 +48,8 @@
             </form>
         </div>
 
-        <p>Activities:</p>
-        
-        <textarea readonly rows="8" cols="150">{% for time, log_entry in request.session.activities.items %}
+        <h3>Activities:</h3>
+        <textarea readonly>{% for time, log_entry in request.session.activities.items %}
 {{ time }} - {{ log_entry}}{% endfor %}</textarea>
     </div>
 </body>

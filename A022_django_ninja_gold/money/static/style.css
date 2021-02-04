@@ -1,0 +1,43 @@
+* {
+    /* outline: 1px black solid; */
+}
+
+.wrapper {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.totals > h3 {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.container {
+    /* margin: 0 auto; */
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+form {
+    width: 205px;
+    height: 170px;
+    border: 1px gray solid;
+}
+
+form > button {
+    width: 55%;
+    height: 20px;
+}
+
+h3 {
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+textarea {
+    margin-left: 30px;
+    width: 93%;
+    height: 200px;
+}
