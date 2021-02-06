@@ -35,6 +35,7 @@
 
     <div class='container'>
         <form action='/add_user' method='POST'>
+            {% csrf_token %}
             <h1>Add a User</h1>
             <div class='control'>
                 <label for="first_name">First Name:</label>
