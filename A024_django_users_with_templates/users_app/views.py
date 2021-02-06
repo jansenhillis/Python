@@ -1,4 +1,9 @@
 from django.shortcuts import render
+from .models import Users
 
 def index(request):
-    return render(request, 'index.html')
+    context = {
+        "users": Users.objects.all()
+    }
+
+    return render(request, 'index.html', context)
