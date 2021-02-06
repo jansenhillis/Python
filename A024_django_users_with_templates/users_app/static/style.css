@@ -1,0 +1,23 @@
+* {
+    outline: 1px gray solid;
+}
+
+.wrapper {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.container {
+    text-align: center;
+}
+
+.table-scroll-control {
+    height: 150px;
+    overflow-y: scroll;
+}
+
+.table-scroll-control > table {
+    margin: 0 auto;
+    width: 500px;
+}
+
