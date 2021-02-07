@@ -1,5 +1,5 @@
 * {
-    outline: 1px gray solid;
+    /* outline: 1px gray solid; */
 }
 
 .wrapper {
@@ -15,8 +15,13 @@
 }
 
 .table-scroll-control > table {
-    width: 500px;
+    width: 600px;
     margin: 0 auto;
+    border: 1px gray solid;
+}
+
+td, th {
+    border: 1px gray solid;
 }
 
 .container {
