@@ -3,12 +3,10 @@
 }
 
 .wrapper {
-    width: 75%;
-    margin: 0 auto;
-}
-
-.container {
     text-align: center;
+    width: 60%;
+    margin: 0 auto;
+    
 }
 
 .table-scroll-control {
@@ -17,7 +15,16 @@
 }
 
 .table-scroll-control > table {
-    margin: 0 auto;
     width: 500px;
+    margin: 0 auto;
 }
 
+.container {
+    width: 500px;
+    margin: 0 auto;
+}
+
+form > button {
+    display: block;
+    margin: 0 auto;
+}
