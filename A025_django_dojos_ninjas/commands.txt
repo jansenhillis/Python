@@ -1,0 +1,96 @@
+In [2]: from dojos_ninjas_app.models import Dojos, Ninjas
+
+In [3]: print(Dojos)
+<class 'dojos_ninjas_app.models.Dojos'>
+
+In [4]: print(Dojos.objects.all())
+<QuerySet []>
+
+In [5]: print(Dojo)
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-5-05d026ba2455> in <module>
+----> 1 print(Dojo)
+
+NameError: name 'Dojo' is not defined
+
+In [6]: Dojos.objects.create(name='Dojo 1', city='Seattle', state='Washington')
+Out[6]: <Dojos: Dojos object (1)>
+
+In [7]: Dojos.objects.create(name='Dojo 2', city='Los Angeles', state='California')
+Out[7]: <Dojos: Dojos object (2)>
+
+In [8]: Dojos.objects.create(name='Dojo 3', city='Anoter City', state='Another State')
+Out[8]: <Dojos: Dojos object (3)>
+
+In [9]: print(Dojos.objects.all())
+<QuerySet [Dojo: Dojo 1 (Seattle, Washington), Dojo: Dojo 2 (Los Angeles, California), Dojo: Dojo 3 (Anoter City, Another State)]>
+
+In [5]: Dojos.objects.get(id=1).delete()
+Out[5]: (1, {'dojos_ninjas_app.Dojos': 1})
+
+In [6]: print (Dojos.objects.all())
+<QuerySet [Dojo: Dojo 2 (Los Angeles, California), Dojo: Dojo 3 (Anoter City, Another State)]>
+
+In [7]: Dojos.objects.get(id=2).delete()
+Out[7]: (1, {'dojos_ninjas_app.Dojos': 1})
+
+In [8]: print (Dojos.objects.all())
+<QuerySet [Dojo: Dojo 3 (Anoter City, Another State)]>
+
+In [9]: Dojos.objects.get(id=3).delete()
+Out[9]: (1, {'dojos_ninjas_app.Dojos': 1})
+
+In [10]: print (Dojos.objects.all())
+<QuerySet []>
+
+In [11]: Dojos.objects.create(name='New Dojo', city='City', state='State')
+Out[11]: Dojo: New Dojo (City, State)
+
+In [12]: Dojos.objects.create(name='Other Dojo', city='Boulder', state='Colorado')
+Out[12]: Dojo: Other Dojo (Boulder, Colorado)
+
+In [13]: Dojos.objects.create(name='Last Dojo', city='Portland', state='Oregon')
+Out[13]: Dojo: Last Dojo (Portland, Oregon)
+
+In [14]: print (Dojos.objects.all())
+<QuerySet [Dojo: New Dojo (City, State), Dojo: Other Dojo (Boulder, Colorado), Dojo: Last Dojo (Portland, Oregon)]>
+
+In [17]: Ninjas.objects.create(dojo=Dojos.objects.get(id=4), first_name='Bob', last_name='Jones')
+Out[17]: <Ninjas: Ninjas object (1)>
+
+In [18]: Ninjas.objects.create(dojo=Dojos.objects.get(id=4), first_name='Sally', last_name='Ride')
+Out[18]: <Ninjas: Ninjas object (2)>
+
+In [19]: Ninjas.objects.create(dojo=Dojos.objects.get(id=4), first_name='John', last_name='Glenn')
+Out[19]: <Ninjas: Ninjas object (3)>
+
+In [20]: Ninjas.objects.create(dojo=Dojos.objects.get(id=5), first_name='Dale', last_name='Pool')
+Out[20]: <Ninjas: Ninjas object (4)>
+
+In [21]: Ninjas.objects.create(dojo=Dojos.objects.get(id=5), first_name='Ben', last_name='Frasier')
+Out[21]: <Ninjas: Ninjas object (5)>
+
+In [22]: Ninjas.objects.create(dojo=Dojos.objects.get(id=5), first_name='Sammy', last_name='Frasier')
+Out[22]: <Ninjas: Ninjas object (6)>
+
+In [23]: Ninjas.objects.create(dojo=Dojos.objects.get(id=6), first_name='Jason', last_name='Lux')
+Out[23]: <Ninjas: Ninjas object (7)>
+
+In [24]: Ninjas.objects.create(dojo=Dojos.objects.get(id=6), first_name='Adam', last_name='Savage')
+Out[24]: <Ninjas: Ninjas object (8)>
+
+In [25]: Ninjas.objects.create(dojo=Dojos.objects.get(id=6), first_name='Burt', last_name='Rutan')
+Out[25]: <Ninjas: Ninjas object (9)>
+
+In [6]: print (Ninjas.objects.filter(dojo=Dojos.objects.first()))
+<QuerySet [Ninja: Bob Jones Dojos object (4), Ninja: Sally Ride Dojos object (4), Ninja: John Glenn Dojos object (4)]>
+
+In [7]: print (Ninjas.objects.filter(dojo=Dojos.objects.last()))
+<QuerySet [Ninja: Jason Lux Dojos object (6), Ninja: Adam Savage Dojos object (6), Ninja: Burt Rutan Dojos object (6)]>
+
+In [8]: print (Ninjas.objects.last().dojo.name)
+Last Dojo
+
+In [2]: Dojos.objects.create(name='That NEW Dojo!', city="Austin", state='Texas', desc="Description")
+Out[2]: Dojo: That NEW Dojo! (Austin, Texas)
