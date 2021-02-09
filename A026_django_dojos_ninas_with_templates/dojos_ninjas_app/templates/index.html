@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojos and Ninjas with Templates</title>
+    {% load static %}
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <form action="/add_dojo">
+                <h1>Add a Dojo</h1>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+
+                <label for="city">City</label>
+                <input type="text" name="city" id="city">
+
+                <label for="state">State</label>
+                <input type="text" name="state" id="state">
+
+                <button type="submit">Add</button>
+            </form>
+            <form action="/add_ninja">
+                <h1>Add a Ninja</h1>
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" id="first_name">
+
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" id="last_name">
+
+                <label for="dojos">Dojo</label>
+                <select name="dojos" id="dojos">
+                    <option value="seattle">Seattle</option>
+                    <option value="austin">Austin</option>
+                    <option value="newyork">New York</option>
+                </select>
+
+                <button type="submit">Add</button>
+            </form>
+        </div>
+        
+        <h1>All the Ninjas</h1>
+
+    </div>
+</body>
+</html>
