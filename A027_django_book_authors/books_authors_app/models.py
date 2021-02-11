@@ -1,9 +1,15 @@
 from django.db import models
 
-class Book(models.Model):
+class Books(models.Model):
     title = models.CharField(max_length=255)
     desc = models.TextField(blank=True)
 
     def __repr__(self):
-        return f"{self.id} {self.title} {self.desc} "
+        return f" {self.id} {self.title} {self.desc} "
 
+class Authors(models.Model):
+    first_name = models.CharField(max_length=45)
+    last_name = models.CharField(max_length=45)
+
+    def __repr__(self):
+        return f" {self.id} {self.first_name} {self.last_name} "
