@@ -1,0 +1,41 @@
+$ python manage.py shell
+Python 3.9.1 (tags/v3.9.1:1e5d33e, Dec  7 2020, 17:08:21) [MSC v.1927 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.20.0 -- An enhanced Interactive Python. Type '?' for help.\
+
+In [2]: from books_authors_app.models import Authors, Books
+
+In [4]: Books.objects.create(title="C Sharp", desc="That C# book")
+Out[4]:  1 C Sharp That C# book 
+
+In [5]: Books.objects.create(title="Java", desc="Java, I hardly knew 'em!")
+Out[5]:  2 Java Java, I hardly knew 'em! 
+
+In [6]: In [2]: from books_authors_app.models import Authors, Books
+
+In [7]: Books.objects.create(title="Java", desc="Java, I hardly knew 'em!")
+Out[7]:  3 Java Java, I hardly knew 'em! 
+
+In [8]: Books.objects.create(title="Python", desc="Snakes? Why'd it have to be SNAKES?!")
+Out[8]:  4 Python Snakes? Why'd it have to be SNAKES?! 
+
+In [9]: Books.objects.create(title="PHP", desc="Get your PHP here! Right here! $5 bucks!")
+Out[9]:  5 PHP Get your PHP here! Right here! $5 bucks! 
+
+In [10]: Books.objects.create(title="Ruby", desc="Want a ruby? Get a Ruby!")
+Out[10]:  6 Ruby Want a ruby? Get a Ruby! 
+
+In [11]: Authors.objects.create(first_name="Emily", last_name="Dickinson")
+Out[11]:  1 Emily Dickinson 
+
+In [12]: Authors.objects.create(first_name="Fyodor", last_name="Dostoevsky")
+Out[12]:  2 Fyodor Dostoevsky 
+
+In [13]: Authors.objects.create(first_name="William", last_name="Shakespeare")
+Out[13]:  3 William Shakespeare
+
+In [14]: Authors.objects.create(first_name="Lau", last_name="Tzu")
+Out[14]:  4 Lau Tzu
+
+In [15]: Authors.objects.create(first_name="Burt", last_name="Rutan")
+Out[15]:  5 Burt Rutan
