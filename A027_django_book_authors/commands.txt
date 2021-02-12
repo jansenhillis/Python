@@ -39,3 +39,69 @@ Out[14]:  4 Lau Tzu
 
 In [15]: Authors.objects.create(first_name="Burt", last_name="Rutan")
 Out[15]:  5 Burt Rutan
+
+In [8]: c_sharp_book = Books.objects.get(title='C Sharp')
+
+In [9]: c_sharp_book.title = "C#"
+
+In [10]: fourth_author = Authors.objects.get(id=4)
+
+In [11]: fourth_author.first_name = "Bill"
+
+In [12]: print(Books.objects.all())
+<QuerySet [ 1 C Sharp That C# book ,  2 Java Java, I hardly knew 'em! ,  3 Java Java, I hardly knew 'em! ,  4 Python Snakes? Why'd it have to be SNAKES?! ,  5 PHP Get your PHP here! Right here! $5 bucks! ,  6 Ruby Want a ruby? Get a Ruby! ]>
+
+In [13]: print(Authors.objects.all())
+<QuerySet [ 1 Emily Dickinson ,  2 Fyodor Dostoevsky ,  3 William Shakespeare ,  4 Lau Tzu ,  5 Burt Rutan ]>
+
+In [4]: first_book = Books.objects.first()
+
+In [5]: second_book = Books.objects.get(id=2)
+
+In [6]: first_author = Authors.objects.first()
+
+In [10]: first_author.books.add(first_book)
+
+In [11]: first_author.books.add(second_book)
+
+n [22]: second_author = Authors.objects.get(id=2)
+
+In [23]: third_book = Books.objects.get(id=3)
+
+In [24]: fourth_book = Books.objects.get(id=4)
+
+In [25]: fifth_book = Books.objects.get(id=5)
+
+In [26]: second_author.books.add(first_book)
+
+In [27]: second_author.books.add(second_book, third_book)
+
+In [28]: third_author = Authors.objects.get(id=3)
+
+In [29]: third_author.books.add(first_book, second_book, third_book, fourth_book)
+
+In [30]: fourth_author = Authors.objects.get(id=4)
+
+In [32]: fourth_author.books.add(first_book, second_book, third_book, fourth_book, fifth_book)
+
+In [33]: print(third_book.authors.all())
+<QuerySet [ 2 Fyodor Dostoevsky ,  3 William Shakespeare ,  4 Lau Tzu ]>
+
+In [32]: fourth_author.books.add(first_book, second_book, third_book, fourth_book, fifth_book)
+
+In [33]: print(third_book.authors.all())
+<QuerySet [ 2 Fyodor Dostoevsky ,  3 William Shakespeare ,  4 Lau Tzu ]>
+
+In [34]: third_book.authors.remove(first_author)
+
+In [35]: fifth_author = Authors.objects.get(id=5)
+
+In [36]: second_book.authors.add(fifth_author)
+
+In [37]: print (third_author.books.all())
+<QuerySet [ 1 C Sharp That C# book ,  2 Java Java, I hardly knew 'em! ,  3 Java Java, I hardly knew 'em! ,  4 Python Snakes? Why'd it have to be SNAKES?! ]>
+
+In [38]: print(fifth_book.authors.all())
+<QuerySet [ 4 Lau Tzu ]>
+
+
