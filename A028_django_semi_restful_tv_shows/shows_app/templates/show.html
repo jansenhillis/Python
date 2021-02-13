@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>TV Show {{ show.id }}</h1>
+            <p>Title: {{ show.title }}</p>
+            <p>Network: {{ show.network }}</p>
+            <p>Release Date: {{ show.release_date }}</p>
+            <p>Description: {{ show.description }}</p>
+
+            <div class="movie-options">
+                <p>Created at: {{ show.created_at }}</p>
+                <p>Last Updated at: {{ show.updated_at }}</p>
+            </div>
+
+        </div>
+        <div class="right_nav">
+
+        </div>
+    </div>
+</body>
+</html>
