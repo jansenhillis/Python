@@ -18,3 +18,9 @@ def show_description(request, show_id):
     return render(request, 'show.html', {
         "show": show
     })
+
+def new(request):
+    return render(request, 'add.html')
+
+def create(request):
+    pass
