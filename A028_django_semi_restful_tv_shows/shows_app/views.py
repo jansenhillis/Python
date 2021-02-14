@@ -23,4 +23,17 @@ def new(request):
     return render(request, 'add.html')
 
 def create(request):
-    pass
+    if request.method == 'POST':
+        title = request.POST['title']
+        network = request.POST['network']
+        release_date = request.POST['release_date']
+        description = request.POST['description']
+
+        show = TVShow.objects.create(title=title, network=network, release_date=release_date, description=description)
+
+        if show:
+            return redirect('show_details', show.id)
+        else:
+            return redirect('/')
+    else:
+        return redirect('/')
