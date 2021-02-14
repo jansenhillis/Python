@@ -37,3 +37,17 @@ def create(request):
             return redirect('/')
     else:
         return redirect('/')
+
+def edit(request, show_id):
+    show = TVShow.objects.get(id=show_id)
+
+    # populate context with show object
+    return render(request, 'edit.html', {
+        "show": show
+    })
+
+def update(request, show_id):
+    if request.method == 'POST':
+        pass
+    else:
+        return redirect('/')
