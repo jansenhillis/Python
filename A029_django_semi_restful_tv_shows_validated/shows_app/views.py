@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import TVShow
 from datetime import datetime
+from django.contrib import messages
 
 def index(request):
     return redirect('/shows')
@@ -25,19 +26,29 @@ def new(request):
 
 def create(request):
     if request.method == 'POST':
-        title = request.POST['title']
-        network = request.POST['network']
-        release_date = request.POST['release_date']
-        description = request.POST['description']
+        errors = TVShow.objects.basic_validator(request.POST)
+        
 
-        show = TVShow.objects.create(title=title, network=network, release_date=release_date, description=description)
+        # Load errors to messages to display to user if any
+        if errors: 
+            for key, value in errors.items():
+                print(key, value)
+                messages.error(request, value)
+            
+            return redirect('/shows/new')
 
-        if show:
-            return redirect('show_details', show.id)
         else:
-            return redirect('/')
-    else:
-        return redirect('/')
+            title = request.POST['title']
+            network = request.POST['network']
+            release_date = request.POST['release_date']
+            description = request.POST['description']
+
+            show = TVShow.objects.create(title=title, network=network, release_date=release_date, description=description)
+
+            if show:
+                return redirect('show_details', show.id)
+            else:
+                return redirect('/')
 
 def edit(request, show_id):
     show = TVShow.objects.get(id=show_id)
@@ -53,25 +64,30 @@ def edit(request, show_id):
 
 def update(request, show_id):
     if request.method == 'POST':
-        title = request.POST['title']
-        network = request.POST['network']
-        release_date = request.POST['release_date']
-        description = request.POST['description']
+        errors = TVShow.objects.basic_validator(request.POST)
 
-        show = TVShow.objects.get(id=show_id)
-
-        if show:
-            show.title = title
-            show.network = network
-            show.release_date = release_date
-            show.description = description 
-            show.save()
-
-            return redirect('show_details', show_id)
+        if errors:
+            for key, value in errors.items():
+                messages.error(request, value)
+            
+            return redirect('edit_view', show_id)
         else:
+            title = request.POST['title']
+            network = request.POST['network']
+            release_date = request.POST['release_date']
+            description = request.POST['description']
+
+            show = TVShow.objects.get(id=show_id)
+
+            if show:
+                show.title = title
+                show.network = network
+                show.release_date = release_date
+                show.description = description 
+                show.save()
+
             return redirect('show_details', show_id)
-    else:
-        return redirect('show_details', show_id)
+
 
 def destroy(request, show_id):
     show = TVShow.objects.get(id=show_id)
