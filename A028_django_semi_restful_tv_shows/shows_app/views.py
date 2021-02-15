@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import TVShow
 from datetime import datetime
-import requests
 
 def index(request):
     return redirect('/shows')
@@ -75,12 +74,9 @@ def update(request, show_id):
         return redirect('show_details', show_id)
 
 def destroy(request, show_id):
-    if request.method == 'POST':
-        show = TVShow.objects.get(id=show_id)
+    show = TVShow.objects.get(id=show_id)
 
-        if show:
-            show.delete()
-        else:
-            return redirect('/shows')
-
+    if show:
+        show.delete()
+    
     return redirect('/shows')
