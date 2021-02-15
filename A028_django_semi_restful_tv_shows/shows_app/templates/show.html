@@ -18,7 +18,7 @@
             <div class="movie-options">
                 <p>Created at: {{ show.created_at }}</p>
                 <p>Last Updated at: {{ show.updated_at }}</p>
-                <p><a href="#">Edit</a> | <a href="#">Delete</a></p>
+                <p><a href="{% url 'edit_view' show.id %}">Edit</a> | <a href="{% url 'destroy' show.id %}">Delete</a></p>
             </div>
 
         </div>

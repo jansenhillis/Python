@@ -9,25 +9,25 @@
 <body>
     <div class="wrapper">
         <div class="content">
-            <form action="{% url 'update' show.id %}" method="POST">
+            <form action="{% url 'update' show_id %}" method="POST">
                 {% csrf_token %}
-                <h1>Edit Show {{ show.id }}</h1>
+                <h1>Edit Show {{ show_id }}</h1>
                 <label for="title">Title: </label>
-                <input type="text" id="title" name="title" value="{{ show.title }}">
+                <input type="text" id="title" name="title" value="{{ show_title }}">
 
                 <label for="network">Network:</label>
-                <input type="text" id="network" name="network" value="{{ show.network }}">
-
+                <input type="text" id="network" name="network" value="{{ show_network }}">
+            
                 <label for="release_date">Release Date:</label>
-                <input type="date" id="release_date" name="release_date" value="{{ show.release_date }}">
+                <input type="date" id="release_date" name="release_date" value="{{ show_release_date }}">
 
                 <label for="description">Description: </label>
-                <textarea id="description" name="description" value="{{ show.description }}"></textarea>
+                <textarea id="description" name="description">{{ show_description }}</textarea>
                 
-                <button type="submit">Update</button>
+                <button type="submit">Update</button>   
             </form>
         </div>
-        <div class="right_nav">
+        <div class="right_nav"> 
             <a href="/shows">Go Back</a>
         </div>
     </div>
