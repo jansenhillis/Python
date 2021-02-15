@@ -1,0 +1,31 @@
+.wrapper {
+    width: 700px;
+    margin: 0 auto;
+}
+
+label {
+    width: 30%;
+}
+
+input[type=text], input[type=date] {
+    width: 68%;
+}
+
+textarea {
+    width: 100%;
+}
+
+.content {
+    display: inline-block;
+    width: 450px;
+
+}
+
+form {
+    width: 400px;
+}
+
+.right_nav {
+    display: inline-block;
+    vertical-align: top;
+}
