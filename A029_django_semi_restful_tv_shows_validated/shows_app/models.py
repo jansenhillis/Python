@@ -16,6 +16,10 @@ class TVShowManager(models.Manager):
         # Validate alphanumerics
         if not postData['title'].isalnum():
             errors['title'] = "Show title can only contain alphanumeric characters"
+        if not postData['network'].isalnum():
+            errors['title'] = "Show network can only contain alphanumeric characters"
+        if not postData['description'].isalnum():
+            errors['title'] = "Show description can only contain alphanumeric characters"
 
         # Validate release_date is in the past, ignoring edge case of adding a new show the day it released
         if len(postData['release_date']) < 1:
