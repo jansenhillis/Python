@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date, datetime
 
 class TVShowManager(models.Manager):
     def basic_validator(self, postData):
@@ -9,15 +10,24 @@ class TVShowManager(models.Manager):
             errors['title'] = "Movie title is required. Should be at least 2 characters."
         if len(postData['network']) < 3:
             errors['network'] = "Network is required. Should be at least 3 characters."
-        if len(postData['release_date']) < 1:
-            errors['release_date'] = "Release Date is required."
         if len(postData['description']) < 10 and len(postData['description']) > 0:
             errors['description'] = "Description is optional, but requires at least 10 characters."
+        
+        # Validate alphanumerics
 
+        # Validate release_date is in the past, ignoring edge case of adding a new show the day it released
+        if len(postData['release_date']) < 1:
+            errors['release_date'] = "Release Date is required."
+        else:
+            release_date = datetime.strptime(postData['release_date'], "%Y-%m-%d")
+            today = datetime.now()
 
-        # Validate email regex
-        # Valdiate date object is in the past
-        # validate alphanumerics
+            if release_date > today:
+                print(release_date, today)
+                errors['release_date'] = "Release Date must be in the past."
+
+        # Validate that a show doesn't already exist before creation
+
         return errors
 
 class TVShow(models.Model):

@@ -27,7 +27,6 @@ def new(request):
 def create(request):
     if request.method == 'POST':
         errors = TVShow.objects.basic_validator(request.POST)
-        
 
         # Load errors to messages to display to user if any
         if errors: 
