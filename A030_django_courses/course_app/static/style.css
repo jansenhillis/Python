@@ -1,0 +1,21 @@
+.left  {
+    display: inline-block;
+    width: 30%;
+    margin: 20px;
+}
+
+
+.right {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+.messages {
+    margin: 25px 0px;
+    color: red;
+}
+
+.table {
+    width: 60%;
+}

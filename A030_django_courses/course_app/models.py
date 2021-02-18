@@ -1,18 +1,14 @@
 from django.db import models
+import re
+
 
 class CourseManager(models.Manager):
     def validator(self, postData):
         errors = {}
 
-        # validate alphanumerics
-        if not postData['name'].isalnum():
-            errors['name'] = "Name may only contain alphanumeric characters."
-        if not postData['desc'].isalnum():
-            errors['desc'] = "Description may only contain alphanumeric characters."
-
         # Course name > 5 characters
         if len(postData['name']) < 5:
-            errors['length'] = "Name is required. Minimum 5 characters."
+            errors['length'] = "Name is required. No special characters. Minimum 5 characters."
 
         # desc > 15 characters
         if len(postData['desc']) < 15:

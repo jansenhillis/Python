@@ -10,34 +10,41 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <form action="/courses/add_course" method="POST">
-        {% csrf_token %}
-        <h2>Add a new course</h2>
+    <div class="top">
+        <div class="left">
+            <form action="/courses/add_course" method="POST">
+                {% csrf_token %}
+                <h2>Add a new course</h2>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter a new course">
+                </div>
         
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter a new course">
-
-        <label for="desc">Description:</label>
-        <input type="text" id="desc" name="desc" placeholder="Description goes here">
-
-        <button type="submit">Add</button>
-    </form>
-    <div class="error list">
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %} 
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+                <div class="form-group">
+                    <label for="desc">Description:</label>
+                    <input type="text" class="form-control" id="desc" name="desc" placeholder="Description goes here">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+        <div class="right">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %} 
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>    
     </div>
     <h1>Courses</h1>
     <table class="table">
         <tr>
-            <th>Course Name</th>
-            <th>Description</th>
-            <th>Date Added</th>
-            <th>Actions</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date Added</th>
+            <th scope="col">Actions</th>
         </tr>
         {% for course in courses %}
             <tr>
