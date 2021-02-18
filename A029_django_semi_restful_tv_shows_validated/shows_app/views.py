@@ -26,8 +26,9 @@ def new(request):
 
 def create(request):
     if request.method == 'POST':
-        errors = TVShow.objects.basic_validator(request.POST)
+        errors = TVShow.objects.create_validator(request.POST)
 
+        print(errors)
         # Load errors to messages to display to user if any
         if errors: 
             for key, value in errors.items():
@@ -63,7 +64,7 @@ def edit(request, show_id):
 
 def update(request, show_id):
     if request.method == 'POST':
-        errors = TVShow.objects.basic_validator(request.POST)
+        errors = TVShow.objects.validator(request.POST)
 
         if errors:
             for key, value in errors.items():

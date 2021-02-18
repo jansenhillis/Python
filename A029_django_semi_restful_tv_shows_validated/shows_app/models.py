@@ -2,7 +2,7 @@ from django.db import models
 from datetime import date, datetime
 
 class TVShowManager(models.Manager):
-    def basic_validator(self, postData):
+    def validator(self, postData):
         errors = {}
 
         # Validate size/presence of input
@@ -29,15 +29,20 @@ class TVShowManager(models.Manager):
             today = datetime.now()
 
             if release_date > today:
-                print(release_date, today)
                 errors['release_date'] = "Release Date must be in the past."
+
+        return errors
+    
+    def create_validator(self, postData):
+        errors = TVShowManager.validator(self, postData)
+        print(errors)
 
         # Validate that a show doesn't already exist before creation
         result = TVShow.objects.filter(title=postData['title'])
+
         if result:
-            print(result)
-            errors['title'] = f"The movie '{ postData['title'] }'' already exists."
-            
+            errors['duplicate'] = f"The movie '{ postData['title'] }'' already exists."
+        
         return errors
 
 class TVShow(models.Model):
@@ -49,5 +54,5 @@ class TVShow(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     objects = TVShowManager()
 
-    def __repr__(self):
+    def __repr__(self): # why not __str__(self)? I've seen that also..
         return f"{self.title} {self.network}, ({self.release_date})"
