@@ -3,6 +3,12 @@ from django.db import models
 class CourseManager(models.Manager):
     def basic_validator(self, postData):
         errors = {}
+        # validate alphanumerics
+        # validate date
+        
+
+        # Course name > 5 characters
+        # desc > 15 characters
 
         return errors
 

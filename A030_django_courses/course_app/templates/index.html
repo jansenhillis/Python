@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <form action="/add_course" method="POST">
+    <form action="/courses/add_course" method="POST">
         {% csrf_token %}
         <h2>Add a new course</h2>
         
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="Enter a new Course name">
+        <input type="text" id="name" name="name" placeholder="Enter a new course">
 
         <label for="desc">Description:</label>
-        <input type="text" id="desc" name="desc" value="Description goes here">
+        <input type="text" id="desc" name="desc" placeholder="Description goes here">
 
         <button type="submit">Add</button>
     </form>
@@ -33,9 +33,9 @@
         {% for course in courses %}
             <tr>
                 <td>{{ course.name }}</td>
-                <td>{{ course.desc }}</td>
+                <td>{{ course.desc}}</td>
                 <td>{{ course.created_at }}</td>
-                <td><a href="{% url 'destroy' course.id }}"></a></td>
+                <td><a href="{% url 'destroy' course.id %}">Remove</a></td>
             </tr>
         {% endfor %}
     </table>

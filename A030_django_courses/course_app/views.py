@@ -4,7 +4,7 @@ from .models import Course
 
 def index(request):
     return render(request, 'index.html', {
-        "courses": Course.objects.all()
+        "courses": Course.objects.all(),
     })
 
 def add_course(request):
@@ -22,6 +22,23 @@ def add_course(request):
             course = Course.objects.create(name=name, desc=desc)            
             
             return redirect('/')
+    else:
+        return redirect('/')
             
 def destroy(request, course_id):
-    pass
+    if request.method == "GET":
+        course = Course.objects.get(id=course_id)
+
+        if course:
+            return render(request, 'confirm_delete.html', {
+                "course": course,
+            })
+    if request.method == "POST":
+        course = Course.objects.get(id=course_id)
+
+        # if a course was found
+        if course:
+            course.delete()
+
+        return redirect('/')
+        
