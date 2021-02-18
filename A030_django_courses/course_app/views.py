@@ -9,8 +9,8 @@ def index(request):
 
 def add_course(request):
     if request.method == "POST":
-        errors = Course.objects.basic_validator(request.POST)
-        
+        errors = Course.objects.validator(request.POST)
+        print(errors)
         if errors:
             for key, value in errors.items():
                 messages.error(request, value)
@@ -33,6 +33,7 @@ def destroy(request, course_id):
             return render(request, 'confirm_delete.html', {
                 "course": course,
             })
+
     if request.method == "POST":
         course = Course.objects.get(id=course_id)
 
