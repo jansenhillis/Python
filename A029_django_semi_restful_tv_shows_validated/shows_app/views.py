@@ -26,13 +26,12 @@ def new(request):
 
 def create(request):
     if request.method == 'POST':
-        errors = TVShow.objects.create_validator(request.POST)
+        errors = TVShow.objects.validator(request.POST)
 
         print(errors)
         # Load errors to messages to display to user if any
         if errors: 
             for key, value in errors.items():
-                print(key, value)
                 messages.error(request, value)
             
             return redirect('/shows/new')
@@ -43,12 +42,17 @@ def create(request):
             release_date = request.POST['release_date']
             description = request.POST['description']
 
-            show = TVShow.objects.create(title=title, network=network, release_date=release_date, description=description)
+            # check if the title already exists (exact match) - ignoring different cases for now
+            result = TVShow.objects.filter(title=title)
+            print ("result: ", result)
+            if not result:
+                show = TVShow.objects.create(title=title, network=network, release_date=release_date, description=description)
 
-            if show:
-                return redirect('show_details', show.id)
+                if show:
+                    return redirect('show_details', show.id)
             else:
-                return redirect('/')
+                messages.error(request, "Show already exists!")
+                return redirect('/shows/new')
 
 def edit(request, show_id):
     show = TVShow.objects.get(id=show_id)
@@ -64,7 +68,7 @@ def edit(request, show_id):
 
 def update(request, show_id):
     if request.method == 'POST':
-        errors = TVShow.objects.validator(request.POST)
+        errors = TVShow.objects.update_validator(request.POST, show_id)
 
         if errors:
             for key, value in errors.items():

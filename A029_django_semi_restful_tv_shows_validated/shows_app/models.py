@@ -4,7 +4,7 @@ from datetime import date, datetime
 class TVShowManager(models.Manager):
     def validator(self, postData):
         errors = {}
-
+        
         # Validate size/presence of input
         if len(postData['title']) < 2:
             errors['title'] = "Show title is required. Should be at least 2 characters."
@@ -12,14 +12,6 @@ class TVShowManager(models.Manager):
             errors['network'] = "Network is required. Should be at least 3 characters."
         if len(postData['description']) < 10 and len(postData['description']) > 0:
             errors['description'] = "Description is optional, but requires at least 10 characters."
-        
-        # Validate alphanumerics
-        if not postData['title'].isalnum():
-            errors['title'] = "Show title can only contain alphanumeric characters"
-        if not postData['network'].isalnum():
-            errors['title'] = "Show network can only contain alphanumeric characters"
-        if not postData['description'].isalnum():
-            errors['title'] = "Show description can only contain alphanumeric characters"
 
         # Validate release_date is in the past, ignoring edge case of adding a new show the day it released
         if len(postData['release_date']) < 1:
@@ -30,20 +22,18 @@ class TVShowManager(models.Manager):
 
             if release_date > today:
                 errors['release_date'] = "Release Date must be in the past."
-
-        return errors
     
-    def create_validator(self, postData):
-        errors = TVShowManager.validator(self, postData)
-        print(errors)
+        return errors
+
+    def update_validator(self, postData, show_id):
+        # Run the normal validation steps
+        errors = self.validator(postData)
 
         # Validate that a show doesn't already exist before creation
-        result = TVShow.objects.filter(title=postData['title'])
+        result = TVShow.objects.filter(title=postData['title']).exclude(id=show_id)
 
         if result:
-            errors['duplicate'] = f"The movie '{ postData['title'] }'' already exists."
-        
-        return errors
+            errors['duplicate'] = f"The movie '{ postData['title'] }' already exists."
 
 class TVShow(models.Model):
     title = models.CharField(max_length=255)
