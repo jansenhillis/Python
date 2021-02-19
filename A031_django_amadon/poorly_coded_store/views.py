@@ -10,9 +10,9 @@ def index(request):
 
 def checkout(request):
     quantity_from_form = int(request.POST["quantity"])
-    price_from_form = float(request.POST["price"])
-    total_charge = quantity_from_form * price_from_form
-    
+    price_from_model = float(Product.objects.get(id=request.POST['product_id']).price)
+    total_charge = quantity_from_form * price_from_model
+
     print(f"Charging credit card... {total_charge}")
     order = Order.objects.create(quantity_ordered=quantity_from_form, total_price=total_charge)
     messages.info(request, f"We charged your credit card for ${ order.total_price }")
