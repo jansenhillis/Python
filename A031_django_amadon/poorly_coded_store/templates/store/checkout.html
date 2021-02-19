@@ -8,8 +8,11 @@
 </head>
 <body>
     <h3>Thank you for your business!</h3>
-    <p>We charged your credit card for <strong>${{ order.total_price }}</strong></p>
-    <p>You have ordered <strong>{{total_ordered }}</strong> items so far and spent <strong>${{net_spend }}</strong> with Amadon.com!</p>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
     <p><a href="/">Go Back</a></p>
 </body>
 </html>
