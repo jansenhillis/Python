@@ -12,7 +12,7 @@
 <body>
     <div class="wrapper">
         <div class="success">
-            <h1>Success! Welcome, {{ first_name }}!</h1>
+            <h1>Success! Welcome, {{ user.first }}!</h1>
             <p>Successfully logged in!</p>
         </div>
         <a href="{% url 'logout' %}">Log Out</a>

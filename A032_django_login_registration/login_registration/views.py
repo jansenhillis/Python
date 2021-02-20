@@ -62,10 +62,12 @@ def logout(request):
     return redirect('/')
 
 def success_view(request):
-    
-    if request.session['user_id']:
+    # check to see if the userid has been placed into the session
+    if 'user_id' in request.session:
         user = User.objects.filter(id=request.session['user_id'])
 
-    return render(request, 'account.html', {
-        "first_name": user[0].first
-    })
+        return render(request, 'account.html', {
+            "user": user[0]
+        })
+    else:
+        return redirect('/')
