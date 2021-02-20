@@ -4,14 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Amadon</title>
+    <title>Login and Registion to Nowhere!</title>
     ​<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
 
 </head>
 <body>
-    <h1>Hello World</h1>
+    <div class="wrapper">
+        <form action="register/" method="post">
+            {% csrf_token %}
+            <h1>Registration</h1>
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="firs_name" placeholder="At least 2 characters">
+
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" placeholder="At least 2 characters">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+
+            <label for="pw">Password</label>
+            <input type="password" id="pw" name="pw">
+
+            <label for="confirm_pw">Confirm Password</label>
+            <input type="password" id="confirm_pw">
+
+            <button type="submit">Register</button>
+        </form>
+        <form action="login/">
+            <h1>Login</h1>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email">
+
+            <label for="pw">Password</label>
+            <input type="password" id="pw" name="pw">
+
+            <button type="submit">Log In</button>
+        </form>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
