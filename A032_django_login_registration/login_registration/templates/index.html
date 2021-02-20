@@ -16,32 +16,41 @@
             {% csrf_token %}
             <h1>Registration</h1>
             <label for="first_name">First Name</label>
-            <input type="text" id="first_name" name="firs_name" placeholder="At least 2 characters">
+            <input type="text" id="first_name" name="first_name" placeholder="At least 2 characters">
 
             <label for="last_name">Last Name</label>
             <input type="text" id="last_name" name="last_name" placeholder="At least 2 characters">
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
+            <label for="reg_email">Email</label>
+            <input type="email" id="reg_email" name="reg_email">
 
-            <label for="pw">Password</label>
-            <input type="password" id="pw" name="pw">
+            <label for="reg_pw">Password</label>
+            <input type="password" id="reg_pw" name="reg_pw">
 
             <label for="confirm_pw">Confirm Password</label>
             <input type="password" id="confirm_pw">
 
             <button type="submit">Register</button>
         </form>
+        
         <form action="login/">
             <h1>Login</h1>
-            <label for="email">Email</label>
-            <input type="text" id="email" name="email">
+            <label for="login_email">Email</label>
+            <input type="text" id="login_email" name="login_email">
 
-            <label for="pw">Password</label>
-            <input type="password" id="pw" name="pw">
+            <label for="login_pw">Password</label>
+            <input type="password" id="login_pw" name="login_pw">
 
             <button type="submit">Log In</button>
         </form>
+
+        {% if messages %}
+            <ul class="errors">
+                {% for msg in messages %}
+                    <li>{{ msg }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
