@@ -10,8 +10,8 @@
 <body>
     <div class="site_nav">
         <h1>CodingDojo Wall</h1>
-        <p>Welcome, {{ first_name }}!</p>
-        <a href="'/">Log Off</a>
+        <p>Welcome, {{ user.first }}!</p>
+        <a href="{% url 'logout' %}">Log Off</a>
     </div>
     <div class="wall_wrapper">
         <form action="/wall">
@@ -21,7 +21,7 @@
         </form>
 
         <div class="post_container">
-            <p>{{ first_name }} {{ last_name }} - DATE</p>
+            <p>{{ user.first }} {{ user.last }} - DATE</p>
             <p>{{ message }}</p>
         </div>
     

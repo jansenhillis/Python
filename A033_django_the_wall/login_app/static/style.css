@@ -1,0 +1,41 @@
+.wrapper {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.container {
+    box-sizing: border-box;
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}
+
+.errors {
+    margin: 20px;
+    border: 1px black solid;
+}
+
+.errors > li {
+    color: red;
+}
+
+form > label {
+    text-align: left;
+    width: 40%;
+}
+
+form > h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form > button {
+    margin-top: 20px;
+}
+
+.success {
+    display: inline-block;
+    width: 90%;
+    vertical-align: top;
+}
