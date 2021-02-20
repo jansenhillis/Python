@@ -42,11 +42,19 @@ def login_view(request):
         else:
             # verify if user exists
             user = User.objects.filter(email=request.POST['login_email'])
+            if user:
+                # verify password hashes match
+                if bcrypt.checkpw(request.POST['login_pw'].encode(), user[0].pw.encode()):
+                    # matched, drop the session variable
+                    request.session['user_id'] = user[0].id
+                    return redirect('success')
+                else:
+                    messages.error(request, "Password incorrect. Try again.")
+                    return redirect('/')
+            else:
+                messages.error(request, "User email not found.")
+                return redirect('/')
 
-            # verify their password hashes match
-
-            request.session['user_id'] = user[0].id
-            return redirect('success')
 
 
 def logout(request):
@@ -54,6 +62,7 @@ def logout(request):
     return redirect('/')
 
 def success_view(request):
+    
     if request.session['user_id']:
         user = User.objects.filter(id=request.session['user_id'])
 
