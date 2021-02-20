@@ -8,14 +8,14 @@ class UserManager(models.Manager):
         errors = {}
         
         # 2 charcters min for first/last name
-        if len(postData['first_name']) < 2:
-            errors['first_name'] = "First name should be at least 2 characters."
-        if len(postData['last_name']) < 2:
-            errors['first_name'] = "Last name should be at least 2 characters."
+        if len(postData['first']) < 2:
+            errors['first'] = "First name should be at least 2 characters."
+        if len(postData['last']) < 2:
+            errors['last'] = "Last name should be at least 2 characters."
         
         # valid email format
         if not EMAIL_REGEX.match(postData['reg_email']):
-            errors['email'] = "Email format incorrect."
+            errors['reg_email'] = "Email format incorrect."
 
         # matching passwords between pw and confirm pw fields
         if not postData['reg_confirm_pw'] == postData['reg_pw']:
@@ -40,8 +40,8 @@ class UserManager(models.Manager):
         # verify if user already exists
         user = self.filter(email=request.POST['reg_email'])
         if not user:
-            first = request.POST['first_name']
-            last = request.POST['last_name']
+            first = request.POST['first']
+            last = request.POST['last']
             email = request.POST['reg_email']
             pw_hashed = bcrypt.hashpw(request.POST['reg_pw'].encode(), bcrypt.gensalt()).decode()
 

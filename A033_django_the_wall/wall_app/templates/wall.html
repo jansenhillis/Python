@@ -14,18 +14,21 @@
         <a href="{% url 'logout' %}">Log Off</a>
     </div>
     <div class="wall_wrapper">
-        <form action="/wall">
+        <form action="{% url 'post' %}" method="POST">
+            {% csrf_token %}
             <h2>Make a Post!</h2>
-            <textarea name="message" id="" cols="30" rows="10"></textarea>
+            <textarea id="message" name="message"></textarea>
             <button type="submit" id="submit">Post a Message</button>
         </form>
 
-        <div class="post_container">
-            <p>{{ user.first }} {{ user.last }} - DATE</p>
-            <p>{{ message }}</p>
-        </div>
-    
-
+        {% if messages %}
+            {% for message in messages reversed%}
+                <div class="post_container">
+                    <p>{{ message.user.first }} {{ message.user.last }} - DATE</p>
+                    <p>{{ message.message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
