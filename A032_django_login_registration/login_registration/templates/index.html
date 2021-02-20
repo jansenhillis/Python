@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <form action="register/" method="post">
+        <form action="register/" method="POST">
             {% csrf_token %}
             <h1>Registration</h1>
             <label for="first_name">First Name</label>
@@ -28,7 +28,7 @@
             <input type="password" id="reg_pw" name="reg_pw">
 
             <label for="confirm_pw">Confirm Password</label>
-            <input type="password" id="confirm_pw">
+            <input type="password" id="reg_confirm_pw" name="reg_confirm_pw">
 
             <button type="submit">Register</button>
         </form>
