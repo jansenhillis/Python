@@ -88,3 +88,19 @@ h1, h2, h4, h6 {
     color: red;
     margin-bottom: 0;
 }
+
+h1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.welcome {
+    margin-right: 20px;
+}
+
+.welcome > p, .welcome > a {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}

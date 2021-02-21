@@ -12,8 +12,11 @@
 <body>
     <div class="site_nav">
         <h1>CodingDojo Wall</h1>
-        <p>Welcome, {{ auth_user.first }}!</p>
-        <a href="{% url 'logout' %}">Log Off</a>
+        <div class="welcome">
+            <p>Welcome, {{ auth_user.first }}!</p>
+            <a href="{% url 'logout' %}">Log Off</a>
+        </div>
+        
     </div>
     <div class="wall_wrapper">
         <form action="{% url 'post' %}" method="POST" class="post_form">
