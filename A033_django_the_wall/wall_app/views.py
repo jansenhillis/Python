@@ -7,11 +7,11 @@ def index(request):
     # check to see if the userid has been placed into the session
     if 'user_id' in request.session:
         user = User.objects.filter(id=request.session['user_id'])
-        messages = Message.objects.all()
+        all_messages = Message.objects.all()
 
         return render(request, 'wall.html', {
             "auth_user": user[0],
-            "messages": messages,
+            "all_messages": all_messages,
         })
 
 def post_message(request):
@@ -28,7 +28,7 @@ def post_message(request):
                 user = User.objects.filter(id=request.session['user_id'])
                 if user:
                     message_text = request.POST['message']
-                    message = Message.objects.create(user=user[0], message=message_text)
+                    Message.objects.create(user=user[0], message=message_text)
                     
                     return redirect('/wall')
                 else: # user not found
@@ -40,7 +40,7 @@ def post_message(request):
 
 def comment(request):
     if request.method == "POST":
-        errors = Message.objects.validator(request.POST)
+        errors = Comment.objects.validator(request.POST)
 
         if errors:
             for error in errors.values():
@@ -48,10 +48,10 @@ def comment(request):
             return redirect('/wall')
         else:
             user = User.objects.filter(id=request.session['user_id'])
-            message = Message.objects.filter(id=request.POST['message_id'])            
-            if user and message:
+            msg = Message.objects.filter(id=request.POST['message_id'])            
+            if user and msg:
                 comment_text = request.POST['comment']
-                comment = Comment.objects.create(user=user[0], message=message[0], comment=comment_text)
+                Comment.objects.create(user=user[0], message=msg[0], comment=comment_text)
                 
                 return redirect('/wall')
             else:

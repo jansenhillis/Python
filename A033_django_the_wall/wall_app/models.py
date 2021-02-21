@@ -5,6 +5,11 @@ from login_app.models import User
 class MessageManager(models.Manager):
     def validator(self, postData):
         errors = {}
+
+        # at least 1 character
+        if postData['message'] == "":
+            errors['message'] = "The message may not be empty."
+
         return errors
 
 class Message(models.Model):
@@ -20,6 +25,11 @@ class Message(models.Model):
 class CommentManager(models.Manager):
     def validator(self, postData):
         errors = {}
+
+        # at least 1 character
+        if postData['comment'] == "":
+            errors['comment'] = "The comment may not be empty."
+            
         return errors
     
 class Comment(models.Model):
@@ -28,7 +38,7 @@ class Comment(models.Model):
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    objects = MessageManager()   
+    objects = CommentManager()   
 
     def __str__(self):
         return f"Comment: { self.comment }"

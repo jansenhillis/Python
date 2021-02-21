@@ -78,13 +78,13 @@ h1, h2, h4, h6 {
     height: 4em;
 }
 
-
 .comment_container {
     width: 97%;
     margin-right: 0;
     margin-left: auto;
 }
 
-/* .comment_container:p (2) {
-    margin-bottom: 5px;
-} */
+.comment_form > p, .post_form > p  {
+    color: red;
+    margin-bottom: 0;
+}
