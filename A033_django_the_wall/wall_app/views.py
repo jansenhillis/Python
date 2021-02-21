@@ -48,15 +48,12 @@ def comment(request):
             return redirect('/wall')
         else:
             user = User.objects.filter(id=request.session['user_id'])
-            message = Message.objects.filter(id=request.POST['message_id'])
-            print(user, message)
-            
+            message = Message.objects.filter(id=request.POST['message_id'])            
             if user and message:
                 comment_text = request.POST['comment']
                 comment = Comment.objects.create(user=user[0], message=message[0], comment=comment_text)
-                print(comment)
+                
                 return redirect('/wall')
             else:
-                print("Error")
                 messages.error(request, "User or Message not found.")
                 return redirect('/wall')

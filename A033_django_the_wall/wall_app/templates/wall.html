@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodingDojo Wall</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
     <div class="site_nav">
@@ -14,34 +16,33 @@
         <a href="{% url 'logout' %}">Log Off</a>
     </div>
     <div class="wall_wrapper">
-        <form action="{% url 'post' %}" method="POST">
+        <form action="{% url 'post' %}" method="POST" class="post_form">
             {% csrf_token %}
             <h2>Make a Post!</h2>
             <textarea id="message" name="message"></textarea>
-            <button type="submit" id="submit">Post a Message</button>
+            <button type="submit" id="submit" class="btn btn-primary">Post a Message</button>
         </form>
 
         {% if messages %}
             {% for message in messages reversed %}
                 <div class="post_container">
-                    <p>{{ message.user.first }} {{ message.user.last }} - {{ message.created_at }}</p>
+                    <h5>{{ message.user.first }} {{ message.user.last }} - {{ message.created_at }}</h5>
                     <p>{{ message.message }}</p>
-
 
                         {% for comment in message.comments.all %}
                             <div class="comment_container">
-                                <p>{{ comment.user.first }} {{ comment.user.last }} - {{ comment.created_at }}</p>
+                                <h6>{{ comment.user.first }} {{ comment.user.last }} - {{ comment.created_at }}</h6>
                                 <p>{{ comment.comment }}</p>
                             </div>
                         {% endfor %}
 
 
-                    <form action="{% url 'comment' %}" method="POST">
+                    <form action="{% url 'comment' %}" method="POST" class="comment_form">
                         {% csrf_token %}
-                        <h2>Make a Comment!</h2>
+                        <h4>Make a Comment!</h4>
                         <textarea id="comment" name="comment"></textarea>
                         <input type="hidden" name="message_id" value="{{ message.id }}">
-                        <button type="submit" id="submit">Post a Comment</button>
+                        <button type="submit" id="submit" class="btn btn-secondary">Post a Comment</button>
                     </form>
                 </div>
             {% endfor %}
