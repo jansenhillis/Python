@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Books</title>
+</head>
+<body>
+    <div class="site_banner">
+        <div class="left_header">
+            <h1>Welcome, {{ auth_user.first }}!</h1>
+            {% if messages %}
+                <ul class="messages">
+                    {% for msg in messages %}
+                        <li {% if msg.tags %} class="{{ msg.tags }}"{% endif %}>{{ msg }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <a href="{% url 'logout' %}">Log Off</a>
+    </div>
+
+    <div class="page_content">
+        <form action="/books">
+            <h1>Add a Favorite Book</h1>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title">
+            
+            <label for="desc">Description</label>
+            <input type="text" id="desc" name="desc">
+            <button type="submit">Add</button>
+        </form>
+        
+        <div class="container">
+            <h1>All Books</h1>
+            {% if books %}
+                {% for book in books %}
+                    <a href="{% url 'show_book' book.pk %}">{{ book.title }}</a>
+                    <p>(added by {{ book.uploaded_by_id }})</p>
+                    {% if book in auth_user.books_favorited.all %}
+                        <p class="favorite_book">this is one of your favorites</p>
+                    {% else %}
+                        <a href="{% url 'favorite' book.pk %}">Add to Favorites</a>
+                    {% endif %}
+                        
+                {% endfor %}
+            {% endif %}
+        
+            
+        </div>
+
+    </div>
+</body>
+</html>

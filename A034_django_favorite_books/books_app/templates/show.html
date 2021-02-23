@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Books</title>
+</head>
+<body>
+    <div class="site_banner">
+        <div class="left_header">
+            <h1>Welcome, {{ auth_user.first }}!</h1>
+            {% if messages %}
+                <ul class="messages">
+                    {% for msg in messages %}
+                        <li {% if msg.tags %} class="{{ msg.tags }}"{% endif %}>{{ msg }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <a href="{% url 'logout' %}">Log Off</a>
+    </div>
+
+    <div class="page_content">
+        <div class="container">
+            <h1>{{ book.title }}</h1>
+            <p>Added by: {{ book.uploaded_by_id }} </p>
+            <p>Added on: {{ book.created_at }}</p>
+            <p>Last updated on: {{ book.updated_at }}</p>
+            <p>Description: {{ book.description }}</p>
+        </div>
+
+        <div class="container">
+            <h1>Users Who Like This Book</h1>
+            {% if book.favorited_by_id %}
+                {% for user in book.favorited_by_id.all %}
+                    {% if not user == auth_user%}
+                        <p>{{ user.first }} {{ user.last }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% if book not in auth_user.books_favorited.all %}
+                <a href="{% url 'favorite' book.pk %}">Add to Favorites</a>
+            {% endif %}
+
+        </div>
+
+    </div>
+</body>
+</html>
