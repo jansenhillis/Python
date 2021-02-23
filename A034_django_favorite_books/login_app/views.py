@@ -34,7 +34,7 @@ def login_view(request):
             return redirect('/')
             
 def logout(request):
-    del request.session['user_id']
+    request.session.clear()
     return redirect('/')
 
 def success_view(request):

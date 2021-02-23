@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Favorite Books</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books.css' %}">
 </head>
 <body>
     <div class="site_banner">
@@ -22,34 +24,34 @@
     </div>
 
     <div class="page_content">
-        <form action="/books">
-            <h1>Add a Favorite Book</h1>
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title">
-            
-            <label for="desc">Description</label>
-            <input type="text" id="desc" name="desc">
-            <button type="submit">Add</button>
-        </form>
+        <div class="container">
+            <form action="/books/process_book/" method="POST">
+                {% csrf_token %}
+                <h2>Add a Favorite Book</h2>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
+                
+                <label for="desc">Description</label>
+                <input type="text" id="desc" name="desc">
+                <button type="submit">Add</button>
+            </form>
+        </div>
         
         <div class="container">
-            <h1>All Books</h1>
-            {% if books %}
-                {% for book in books %}
-                    <a href="{% url 'show_book' book.pk %}">{{ book.title }}</a>
-                    <p>(added by {{ book.uploaded_by_id }})</p>
+            <h2>All Books</h2>
+            {% for book in books %}
+                <ul>
+                    <h3><a href="{% url 'show_book' book.pk %}">{{ book.title }}</a></h3>
+                    <li>(added by {{ book.uploaded_by_id }})</li>
+                    
                     {% if book in auth_user.books_favorited.all %}
-                        <p class="favorite_book">this is one of your favorites</p>
+                        <li class="favorite_book">this is one of your favorites</li>
                     {% else %}
                         <a href="{% url 'favorite' book.pk %}">Add to Favorites</a>
                     {% endif %}
-                        
-                {% endfor %}
-            {% endif %}
-        
-            
+                </ul>
+            {% endfor %}
         </div>
-
     </div>
 </body>
 </html>

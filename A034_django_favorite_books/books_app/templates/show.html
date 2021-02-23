@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Favorite Books</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books.css' %}">
 </head>
 <body>
     <div class="site_banner">
@@ -23,20 +25,40 @@
 
     <div class="page_content">
         <div class="container">
-            <h1>{{ book.title }}</h1>
-            <p>Added by: {{ book.uploaded_by_id }} </p>
-            <p>Added on: {{ book.created_at }}</p>
-            <p>Last updated on: {{ book.updated_at }}</p>
-            <p>Description: {{ book.description }}</p>
+            <form action="{% url 'update' book.pk %}" method="POST">
+                {% csrf_token %}
+                {% if auth_user != book.uploaded_by_id %}
+                    <h2>{{ book.title }}</h2>
+                {% else %}
+                    <input type="text" id="edit_title" name="title" value="{{book.title}}">
+                {% endif %}
+
+                <p>Added by: {{ book.uploaded_by_id }} </p>
+                <p>Added on: {{ book.created_at }}</p>
+                <p>Last updated on: {{ book.updated_at }}</p>
+                
+                    {% if auth_user != book.uploaded_by_id %} 
+                        <p>Description: {{ book.description }}
+                    {% else %}
+                        <label for="edit">Description:</label>
+                        <input type="text" id="edit_desc" name="desc" value="{{ book.description }}">
+                        <button type="submit">Update</button>
+                        <button formaction="{% url 'delete' book.pk %}">Delete</button>
+                    {% endif %}
+                </p>
+                
+            </form>
         </div>
 
         <div class="container">
-            <h1>Users Who Like This Book</h1>
+            <h2>Users Who Like This Book</h2>
             {% if book.favorited_by_id %}
                 {% for user in book.favorited_by_id.all %}
-                    {% if not user == auth_user%}
-                        <p>{{ user.first }} {{ user.last }}</p>
-                    {% endif %}
+                    <p>{{ user.first }} {{ user.last }} 
+                        {% if user == auth_user %}
+                            <a href="{% url 'remove' book.pk %}">Un-Favorite</a>
+                        {% endif %}
+                    </p>
                 {% endfor %}
             {% endif %}
 

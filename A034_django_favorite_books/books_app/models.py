@@ -2,8 +2,14 @@ from django.db import models
 from login_app.models import User
 
 class BookManager(models.Manager):
-    def validator(self):
+    def validator(self, postData):
         errors = {}
+        
+        if not postData['title']:
+            errors['title'] = "Title must not be blank."
+        if len(postData['desc']) < 5:
+            errors['description'] = "Description must at least 5 characters long."
+
         return errors
 
 class Book(models.Model):

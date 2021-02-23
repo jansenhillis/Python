@@ -1,0 +1,95 @@
+* {
+    /* outline: 2px red solid; */
+}
+
+.site_banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2pt black solid;
+}
+
+.site_nav > p {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.welcome {
+    margin-right: 20px;
+}
+
+.welcome > p, .welcome > a {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.page_content {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+}
+
+.container {
+    margin: 0 2em;
+}
+.container > p {
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    display: inline-block;
+    width: 400px;
+    vertical-align: top;
+    text-align: right;
+}
+
+form > label {
+    display: inline-block;
+    width: 30%;
+}
+
+form > input {
+    width: 60%;
+    margin-bottom: 1em;
+    height: 2em;
+}
+
+#desc {
+    height: 4em
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+h3 {
+    margin: 0;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: darkgreen;
+}
+
+#edit_title {
+    margin-top: 20px;
+    height: 1em;
+}
+
+#edit_desc {
+    height: 3em;
+}
